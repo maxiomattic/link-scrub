@@ -1,0 +1,11 @@
+body { font: 14px system-ui, sans-serif; width: 260px; margin: 12px; color: #222; }
+h1 { font-size: 15px; margin: 0 0 8px; }
+#msg { margin: 0 0 10px; }
+#msg.ok { color: #116329; }
+#msg.err { color: #a40e26; }
+button { width: 100%; padding: 6px; cursor: pointer; }
+.note { font-size: 11px; color: #666; margin: 10px 0 0; }
+@media (prefers-color-scheme: dark) {
+  body { background: #1e1e1e; color: #ddd; } .note { color: #999; }
+  #msg.ok { color: #6fdc8c; } #msg.err { color: #ff8389; }
+}

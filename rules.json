@@ -1,0 +1,31 @@
+[
+  {
+    "id": 1,
+    "priority": 2,
+    "action": { "type": "redirect", "redirect": { "transform": { "query": "" } } },
+    "condition": {
+      "regexFilter": "^https?://(www\\.|mobile\\.)?(x|twitter)\\.com/([^?#]*/status(es)?/|i/)[^?#]*\\?",
+      "resourceTypes": ["main_frame", "sub_frame"]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 1,
+    "action": { "type": "redirect", "redirect": { "transform": { "queryTransform": {
+      "removeParams": ["a", "s", "t", "ref_src", "ref_url", "cn", "refsrc", "twclid"] } } } },
+    "condition": {
+      "requestDomains": ["x.com", "twitter.com"],
+      "resourceTypes": ["main_frame", "sub_frame"]
+    }
+  },
+  {
+    "id": 3,
+    "priority": 1,
+    "action": { "type": "redirect", "redirect": { "transform": { "queryTransform": {
+      "removeParams": ["si", "pp", "feature", "ab_channel", "embeds_referring_euri", "embeds_referring_origin", "source_ve_path"] } } } },
+    "condition": {
+      "requestDomains": ["youtube.com", "youtu.be", "youtube-nocookie.com"],
+      "resourceTypes": ["main_frame", "sub_frame"]
+    }
+  }
+]
