@@ -96,5 +96,7 @@ for (const [from, to] of [
   check(`open ${from}`, reqs.includes(to) && reqs.indexOf(to) === 1 ? to : JSON.stringify(reqs.slice(0, 3)), to);
 }
 
-chrome.kill(); srv.close(); rmSync(prof, { recursive: true, force: true });
+chrome.kill(); srv.close();
+await new Promise((r) => chrome.once("exit", r));
+rmSync(prof, { recursive: true, force: true, maxRetries: 5 });
 console.log(fails ? `${fails} FAILED` : 'ALL PASSED'); process.exit(fails ? 1 : 0);
