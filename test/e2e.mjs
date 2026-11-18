@@ -72,6 +72,9 @@ check('textarea copy', await read(), 'https://youtu.be/abc?t=9');
 await p.ev(`(() => { document.addEventListener('copy', e => { e.clipboardData.setData('text/plain', 'https://youtu.be/q?si=1'); e.preventDefault(); }, {once:true}); return document.execCommand('copy'); })()`);
 check('page copy handler setData', await read(), 'https://youtu.be/q');
 
+await p.ev(`navigator.clipboard.writeText('https://www.tiktok.com/@u/video/73?_r=1&_t=8h&is_from_webapp=1')`);
+check('TikTok copy', await read(), 'https://www.tiktok.com/@u/video/73');
+
 await p.ev(`navigator.clipboard.writeText('https://example.com/?a=1')`);
 check('other sites untouched', await read(), 'https://example.com/?a=1');
 
@@ -89,6 +92,9 @@ for (const [from, to] of [
   ['https://x.com/jack/status/20?s=20&a=AbC', 'https://x.com/jack/status/20'],
   ['https://youtu.be/dQw4w9WgXcQ?si=abc&t=4', 'https://youtu.be/dQw4w9WgXcQ?t=4'],
   ['https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=yg&si=a', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'],
+  ['https://www.instagram.com/p/C1abc/?img_index=2&igsh=MWQ1', 'https://www.instagram.com/p/C1abc/?img_index=2'],
+  ['https://www.reddit.com/r/linux/?share_id=Xyz&utm_source=share', 'https://www.reddit.com/r/linux/'],
+  ['https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC?si=4f9e', 'https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC'],
 ]) {
   events.length = 0;
   const t = await tab(from);

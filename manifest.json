@@ -1,32 +1,79 @@
 {
   "manifest_version": 3,
   "name": "Link Scrub",
-  "version": "1.0.0",
-  "description": "Strips X (a=, s=, t=) and YouTube (si=, pp=, feature=) share trackers from links you copy and open. Fully offline.",
-  "permissions": ["declarativeNetRequest", "clipboardRead", "clipboardWrite"],
+  "version": "1.1.0",
+  "description": "Removes share trackers from X, YouTube, Instagram, Threads, TikTok, Spotify, Facebook, Reddit and LinkedIn links. Fully offline.",
+  "permissions": [
+    "declarativeNetRequest",
+    "clipboardRead",
+    "clipboardWrite"
+  ],
   "host_permissions": [
-    "*://x.com/*", "*://*.x.com/*",
-    "*://twitter.com/*", "*://*.twitter.com/*",
-    "*://youtube.com/*", "*://*.youtube.com/*", "*://youtu.be/*",
-    "*://*.youtube-nocookie.com/*"
+    "*://x.com/*",
+    "*://*.x.com/*",
+    "*://twitter.com/*",
+    "*://*.twitter.com/*",
+    "*://youtube.com/*",
+    "*://*.youtube.com/*",
+    "*://youtube-nocookie.com/*",
+    "*://*.youtube-nocookie.com/*",
+    "*://instagram.com/*",
+    "*://*.instagram.com/*",
+    "*://threads.net/*",
+    "*://*.threads.net/*",
+    "*://threads.com/*",
+    "*://*.threads.com/*",
+    "*://tiktok.com/*",
+    "*://*.tiktok.com/*",
+    "*://spotify.com/*",
+    "*://*.spotify.com/*",
+    "*://facebook.com/*",
+    "*://*.facebook.com/*",
+    "*://reddit.com/*",
+    "*://*.reddit.com/*",
+    "*://linkedin.com/*",
+    "*://*.linkedin.com/*",
+    "*://youtu.be/*",
+    "*://fb.watch/*"
   ],
   "declarative_net_request": {
-    "rule_resources": [{ "id": "strip", "enabled": true, "path": "rules.json" }]
+    "rule_resources": [
+      {
+        "id": "strip",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
   },
-  "content_scripts": [{
-    "matches": ["<all_urls>"],
-    "js": ["sanitize.js", "hook.js"],
-    "run_at": "document_start",
-    "all_frames": true,
-    "match_origin_as_fallback": true,
-    "world": "MAIN"
-  }],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "sanitize.js",
+        "hook.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_origin_as_fallback": true,
+      "world": "MAIN"
+    }
+  ],
   "action": {
-    "default_title": "Clean the link on my clipboard",
+    "default_title": "Clean the links on my clipboard",
     "default_popup": "popup.html",
-    "default_icon": { "16": "icons/16.png", "48": "icons/48.png", "128": "icons/128.png" }
+    "default_icon": {
+      "16": "icons/16.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
+    }
   },
-  "icons": { "16": "icons/16.png", "48": "icons/48.png", "128": "icons/128.png" },
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
   "content_security_policy": {
     "extension_pages": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'"
   }
