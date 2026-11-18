@@ -1,5 +1,5 @@
 // End-to-end check in real headless Chromium with the extension loaded.
-// Usage: node test/e2e.mjs <chromium-binary>
+// Usage: node test/e2e.mjs <chromium-binary> [unpacked-extension-dir]
 import { spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { mkdtempSync, rmSync } from 'node:fs';
@@ -8,7 +8,7 @@ import http from 'node:http';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
-const ext = path.resolve(new URL('..', import.meta.url).pathname);
+const ext = path.resolve(process.argv[3] || new URL('..', import.meta.url).pathname);
 const extId = [...createHash('sha256').update(ext).digest('hex').slice(0, 32)]
   .map((c) => String.fromCharCode(97 + parseInt(c, 16))).join('');
 const page = readFileSync(new URL('page.html', import.meta.url));

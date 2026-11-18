@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Link Scrub: strip share trackers from your links</title>
+<meta name="description" content="Link Scrub removes share trackers from links you copy or open on X, YouTube, Instagram, Threads, TikTok, Spotify, Facebook, Reddit and LinkedIn. Runs entirely offline; nothing leaves your browser.">
+<meta property="og:title" content="Link Scrub">
+<meta property="og:description" content="Removes share trackers from links you copy or open. Runs entirely offline.">
+<link rel="icon" href="/icon.png">
+<link rel="preload" href="/fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="brand"><img src="/icon.png" alt="" width="28" height="28"> Link Scrub</p>
+
+    <div class="specimen" aria-hidden="true">
+      <span class="kept">x.com/jack/status/20</span><span class="gone">?s=20&amp;a=RFELiAObBLe</span>
+    </div>
+
+    <h1>Share the post.<br>Not yourself.</h1>
+    <p class="lede">Link Scrub removes share trackers from links you copy or open on X, YouTube, Instagram, Threads, TikTok, Spotify, Facebook, Reddit and LinkedIn. Runs entirely offline; nothing leaves your browser.</p>
+
+    <div class="cta">
+      <a class="button" href="/download/link-scrub-1.1.0.zip" download>Download Link Scrub 1.1.0</a>
+      <p class="meta">13 KB zip for Brave, Chrome, Edge, Vivaldi and Opera. <a href="#install">How to install</a></p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="try" aria-labelledby="try-h">
+    <div class="wrap">
+      <h2 id="try-h">Try it on a link</h2>
+      <p>Paste any link from a supported site. This runs on this page only; the link isn't sent anywhere.</p>
+      <label for="in" class="visually-hidden">Link to clean</label>
+      <textarea id="in" rows="2" spellcheck="false" autocomplete="off">https://youtu.be/dQw4w9WgXcQ?si=Kq3b9vZ1rT0pX&amp;t=43</textarea>
+      <div class="result" aria-live="polite">
+        <div id="diff" class="diff"></div>
+        <div class="result-row">
+          <p id="verdict" class="verdict"></p>
+          <button id="copy" type="button" class="ghost">Copy clean link</button>
+        </div>
+      </div>
+      <p class="samples">Try a sample:
+        <button type="button" data-sample="https://x.com/jack/status/20?s=20&amp;a=RFELiAObBLe_jLlG8Ms">X</button>
+        <button type="button" data-sample="https://www.instagram.com/reel/C1abcDEF/?igsh=MWQ1ZGUxMzBkMA==">Instagram</button>
+        <button type="button" data-sample="https://www.tiktok.com/@user/video/7300000000000000000?_r=1&amp;_t=8hXyzAbc&amp;is_from_webapp=1&amp;sender_device=pc">TikTok</button>
+        <button type="button" data-sample="https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC?si=4f9e1a2b3c4d">Spotify</button>
+        <button type="button" data-sample="https://www.reddit.com/r/linux/comments/abc123/title/?share_id=Xyz9&amp;utm_medium=android_app&amp;utm_source=share">Reddit</button>
+      </p>
+    </div>
+  </section>
+
+  <section id="install" class="install" aria-labelledby="install-h">
+    <div class="wrap">
+      <h2 id="install-h">Install it</h2>
+      <p>Link Scrub isn't in the Chrome Web Store, so you load it yourself. It takes about a minute.</p>
+      <ol class="steps">
+        <li>
+          <h3>Download and unzip</h3>
+          <p><a href="/download/link-scrub-1.1.0.zip" download>Download the zip</a>, then extract it. You'll get a folder called <code>link-scrub</code>. Keep it somewhere permanent, like Documents: the browser loads the extension from that folder.</p>
+        </li>
+        <li>
+          <h3>Open your extensions page</h3>
+          <p>Paste this into the address bar. Browsers don't let websites link to it directly.</p>
+          <div class="copyline">
+            <code id="ext-url">chrome://extensions</code>
+            <button type="button" class="ghost" id="copy-ext">Copy</button>
+          </div>
+          <p class="hint" id="browser-hint"></p>
+        </li>
+        <li>
+          <h3>Turn on Developer mode</h3>
+          <p>It's a switch in the top-right corner of the extensions page (bottom-left in Edge).</p>
+        </li>
+        <li>
+          <h3>Click Load unpacked</h3>
+          <p>Choose the <code>link-scrub</code> folder. Link Scrub appears in your extensions list. Pin it to the toolbar if you want the clipboard button handy.</p>
+        </li>
+      </ol>
+      <p class="note">Firefox and Safari aren't supported yet. To update, download the new zip, replace the folder, and click the reload arrow on Link Scrub's card.</p>
+    </div>
+  </section>
+
+  <section class="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <h2 id="how-h">What it does</h2>
+      <dl class="does">
+        <dt>When you copy a link</dt>
+        <dd>"Copy link" buttons, share sheets and Ctrl+C on any website. The tracker is gone before the link reaches your clipboard.</dd>
+        <dt>When you open a link</dt>
+        <dd>Someone sends you a tracked link. The tracker is removed before your browser requests the page, so the site never learns who shared it with you.</dd>
+        <dt>When you click the toolbar button</dt>
+        <dd>For links copied from other apps. It cleans whatever is on your clipboard right now.</dd>
+      </dl>
+
+      <h2>What it removes</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Site</th><th scope="col">Removed</th><th scope="col">Kept</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">X / Twitter</th><td><code>a</code> <code>s</code> <code>t</code> <code>ref_src</code>; everything on post links</td><td>search terms</td></tr>
+            <tr><th scope="row">YouTube</th><td><code>si</code> <code>pp</code> <code>feature</code> <code>ab_channel</code> and anything else</td><td>video, timestamp, playlist</td></tr>
+            <tr><th scope="row">Instagram</th><td><code>igsh</code> <code>igshid</code> <code>igsi</code> <code>utm_*</code></td><td>carousel position</td></tr>
+            <tr><th scope="row">Threads</th><td><code>xmt</code> <code>slof</code> <code>igshid</code></td><td></td></tr>
+            <tr><th scope="row">TikTok</th><td><code>_r</code> <code>_t</code> <code>is_from_webapp</code> <code>sender_device</code> and the rest</td><td>search terms</td></tr>
+            <tr><th scope="row">Spotify</th><td><code>si</code> <code>pi</code> <code>nd</code> <code>dlsi</code></td><td>everything else</td></tr>
+            <tr><th scope="row">Facebook</th><td><code>mibextid</code> <code>rdid</code> <code>share_url</code> <code>fbclid</code></td><td>post and photo IDs</td></tr>
+            <tr><th scope="row">Reddit</th><td><code>share_id</code> <code>rdt</code> <code>utm_*</code></td><td>comment context</td></tr>
+            <tr><th scope="row">LinkedIn</th><td><code>rcm</code> <code>trk</code> <code>trackingId</code> <code>refId</code> <code>utm_*</code></td><td>job IDs</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Short share links like <code>vt.tiktok.com/…</code>, <code>spotify.link/…</code> and Reddit's <code>/s/…</code> links carry the tracker inside the link itself. Link Scrub can't clean those without contacting the site, so it leaves them alone.</p>
+    </div>
+  </section>
+
+  <section class="privacy" aria-labelledby="privacy-h">
+    <div class="wrap">
+      <h2 id="privacy-h">Your clipboard stays yours</h2>
+      <ul>
+        <li>No network access, no analytics, no storage, no background process.</li>
+        <li>On websites it never reads your clipboard. It only rewrites a link the page is already copying.</li>
+        <li>It reads the clipboard only when you click its toolbar button, and forgets it when the popup closes.</li>
+        <li>No website or other extension can talk to it.</li>
+        <li>About 230 lines of plain JavaScript. <a href="https://github.com/maxiomattic/link-scrub">Read the source on GitHub</a>.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Link Scrub 1.1.0. MIT licensed. This site has no cookies or trackers either.</p>
+  </div>
+</footer>
+
+<script src="/sanitize.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
